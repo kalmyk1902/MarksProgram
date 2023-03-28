@@ -11,7 +11,7 @@ def calculate():
     driver.get(resp)
     wait = WebDriverWait(driver, 10)
     wait.until(ec.presence_of_element_located((By.CLASS_NAME, 'mtable')))
-    elem_marks = driver.find_elements(By.XPATH, './/td[@class="lesson_exists"]/span')
+    elem_marks = driver.find_elements(By.XPATH, ".//td[contains(concat(' ', @class, ' '), ' lesson_exists ') or contains(concat(' ', @class, ' '), ' lesson_exists-')]//span")
     all_marks = [mark.text for mark in elem_marks]
     driver.quit()
     return all_marks

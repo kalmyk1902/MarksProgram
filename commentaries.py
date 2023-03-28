@@ -21,7 +21,7 @@ def calculate():
     driver.get(resp) #входим на сайт
     wait = WebDriverWait(driver, 10) #задаем параметры ожидания в 10 секунд
     wait.until(ec.presence_of_element_located((By.CLASS_NAME, 'mtable'))) #ожидаем загрузки таблицы успеваемости
-    elem_marks = driver.find_elements(By.XPATH, './/td[@class="lesson_exists"]/span') #при помощи XPath-выражения извлекаем данные об отметках и пропусках
+    elem_marks = driver.find_elements(By.XPATH, ".//td[contains(concat(' ', @class, ' '), ' lesson_exists ') or contains(concat(' ', @class, ' '), ' lesson_exists-')]//span") #при помощи XPath-выражения извлекаем данные об отметках и пропусках
     all_marks = [mark.text for mark in elem_marks] #записываем все в массив
     driver.quit() #выходим с сайта
     return all_marks #функция возвращает список
